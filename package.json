@@ -1,0 +1,52 @@
+{
+  "name": "testttt",
+  "version": "0.0.0-development",
+  "private": false,
+  "scripts": {
+    "test": "jest",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "semantic-release": "semantic-release"
+  },
+  "dependencies": {
+    "@amplitude/analytics-browser": "^0.4.1",
+    "@types/jest": "^27.5.1",
+    "amplitude-js": "^8.18.2",
+    "jest": "^28.1.0",
+    "next": "12.1.6",
+    "react": "18.1.0",
+    "react-dom": "18.1.0"
+  },
+  "devDependencies": {
+    "eslint": "8.15.0",
+    "eslint-config-next": "12.1.6",
+    "semantic-release": "^19.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akasuv/testttt.git"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "release": {
+    "branches": [
+      "main",
+      {
+        "name": "beta",
+        "prerelease": true
+      },
+      {
+        "name": "alpha",
+        "prerelease": true
+      }
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github"
+    ]
+  }
+}
