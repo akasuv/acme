@@ -1,5 +1,5 @@
 {
-  "name": "testttt",
+  "name": "Acme",
   "version": "0.0.0-development",
   "private": false,
   "scripts": {
@@ -26,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/akasuv/testttt.git"
+    "url": "https://github.com/akasuv/acme.git"
   },
   "publishConfig": {
     "access": "restricted"
