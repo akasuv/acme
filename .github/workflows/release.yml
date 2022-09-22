@@ -37,6 +37,8 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      - name: generate sourcemaps
+        run: yarn build
 
       - name: Create Sentry release for production
         if: ${{ github.ref == 'refs/heads/main' }}
@@ -48,6 +50,7 @@ jobs:
         with:
           environment: production
           version: ${{ needs.semver.outputs.version }}
+          sourcemaps: "./.next"
 
       - name: Create Sentry release for preview
         if: ${{ github.ref != 'refs/heads/main' }}
@@ -59,3 +62,4 @@ jobs:
         with:
           environment: preview
           version: ${{ needs.semver.outputs.version }}
+          sourcemaps: "./.next"
