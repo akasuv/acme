@@ -26,6 +26,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
         run: npx semantic-release
 
+      - name: Test
+        run: |
+          echo ${{ github.ref }}
+
       - name: Create Sentry release
         uses: getsentry/action-release@v1
         env:
