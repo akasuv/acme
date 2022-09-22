@@ -37,11 +37,25 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Create Sentry release
+
+      - name: Create Sentry release for production
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: getsentry/action-release@v1
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
         with:
+          environment: production
+          version: ${{ needs.semver.outputs.version }}
+
+      - name: Create Sentry release for preview
+        if: ${{ github.ref != 'refs/heads/main' }}
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+        with:
+          environment: preview
           version: ${{ needs.semver.outputs.version }}
