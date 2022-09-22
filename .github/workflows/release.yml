@@ -42,4 +42,4 @@ jobs:
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
         with:
           environment: production
-          version: ${{ env.RELEASE_VERSION }}
+          version: needs.semver.outputs.version
