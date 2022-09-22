@@ -34,9 +34,10 @@ jobs:
     runs-on: ubuntu-latest
     if: needs.semver.outputs.version != ''
     steps:
+      - name: Print
+        run: echo version value is ${{ needs.semver.outputs.version }}
       - name: Create Sentry release
         uses: getsentry/action-release@v1
-        run: echo version value is ${{ needs.semver.outputs.version }}
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
