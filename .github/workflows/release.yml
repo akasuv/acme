@@ -47,10 +47,8 @@ jobs:
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
-      - name: Create env file
-        run: |
-          touch .env
-          echo SENTRY_RELEASE=${{ needs.semver.outputs.version }} >> .env
+      - name: Update version env
+        run: echo ${{ needs.semver.outputs.version }} | vercel add NEXT_PUBLIC_SENTRY_RELEASE production
 
       - name: Build Project Artifacts
         if: ${{ github.ref == 'refs/heads/main' }}

@@ -12,7 +12,7 @@ Sentry.init({
     "https://a11cb72da661421f97abd56d6047125f@o1421660.ingest.sentry.io/6767643",
   // Adjust this value in production, or use tracesSampler for greater control
   tracesSampleRate: 1.0,
-  release: process.env.SENTRY_RELEASE,
+  release: process.env.NEXT_PUBLIC_SENTRY_RELEASE,
   // ...
   // Note: if you want to override the automatic release value, do not set a
   // `release` value here - use the environment variable `SENTRY_RELEASE`, so
