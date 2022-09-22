@@ -7,7 +7,6 @@ on:
       - beta
 jobs:
   semver:
-    name: Create Semantic Release
     runs-on: ubuntu-latest
     outputs:
       version: ${{ env.RELEASE_VERSION }}
@@ -34,8 +33,10 @@ jobs:
     runs-on: ubuntu-latest
     if: needs.semver.outputs.version != ''
     steps:
-      - name: Print
-        run: echo version value is ${{ needs.semver.outputs.version }}
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Create Sentry release
         uses: getsentry/action-release@v1
         env:
