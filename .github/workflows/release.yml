@@ -6,8 +6,8 @@ on:
       - alpha
       - beta
 jobs:
-  release:
-    name: Release
+  semver:
+    name: Create Semantic Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -27,9 +27,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
         run: npx semantic-release
 
-      - name: Print
-        run: echo ${{env.RELEASE_VERSION }}
-
+  sentry:
+    needs: semver
+    if: "${{ env.RELEASE_VERSION != '' }}"
+    steps:
       - name: Create Sentry release
         uses: getsentry/action-release@v1
         env:
