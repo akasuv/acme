@@ -1,6 +1,6 @@
 export default function Home() {
   const handleClick = () => {
-    throw new Error("Test Sentry");
+    throw new Error("Sentry Error Detected");
   };
-  return <div onClick={handleClick}>div</div>;
+  return <h1 onClick={handleClick}>TEST</h1>;
 }
