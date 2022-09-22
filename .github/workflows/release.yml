@@ -41,7 +41,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: generate sourcemaps
+      - name: Generate sourcemaps
         run: yarn build
 
       - name: Create Sentry release for production

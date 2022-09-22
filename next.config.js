@@ -9,6 +9,10 @@ const moduleExports = {
   // Your existing module.exports
   // /** @type {import('next').NextConfig} */
   reactStrictMode: true,
+  sentry: {
+    disableServerWebpackPlugin: true,
+    disableClientWebpackPlugin: true,
+  },
 };
 
 const sentryWebpackPluginOptions = {
