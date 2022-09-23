@@ -63,8 +63,6 @@ jobs:
         with:
           environment: production
           version: ${{ needs.semver.outputs.version }}
-      - name: Update version env
-        run: echo ${{ needs.semver.outputs.version }} | vercel env add NEXT_PUBLIC_SENTRY_RELEASE production --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Create Sentry release for preview
         if: ${{ github.ref != 'refs/heads/main' }}
@@ -76,5 +74,3 @@ jobs:
         with:
           environment: preview
           version: ${{ needs.semver.outputs.version }}
-      - name: Trigger Deployment
-        run: curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_OppuEhwfzRLkFhlBfT7lTgo4j8eg/TPoo064nXF
