@@ -1,6 +1,10 @@
+import React from "react";
+
 export default function Home() {
+  const [value, setValue] = React.useState();
+
   const handleClick = () => {
-    throw new Error("Test Sentry alpha");
+    setValue(true);
   };
-  return <div onClick={handleClick}>div</div>;
+  return !value ? <h1 onClick={handleClick}>TEST</h1> : JSON.parse();
 }
