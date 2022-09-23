@@ -45,7 +45,7 @@ jobs:
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Remove old version env
-        run: vercel env rm NEXT_PUBLIC_SENTRY_RELEASE production --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel env rm NEXT_PUBLIC_SENTRY_RELEASE production --token=${{ secrets.VERCEL_TOKEN }} --yes
 
       - name: Update version env
         run: echo ${{ needs.semver.outputs.version }} | vercel env add NEXT_PUBLIC_SENTRY_RELEASE production --token=${{ secrets.VERCEL_TOKEN }}
