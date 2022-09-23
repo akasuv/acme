@@ -38,14 +38,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install dependencies
-        run: yarn install
-
       - name: Install Vercel CLI
         run: yarn global add vercel@latest
 
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Remove old version env
+        run: vercel env rm NEXT_PUBLIC_SENTRY_RELEASE production --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Update version env
         run: echo ${{ needs.semver.outputs.version }} | vercel env add NEXT_PUBLIC_SENTRY_RELEASE production --token=${{ secrets.VERCEL_TOKEN }}
