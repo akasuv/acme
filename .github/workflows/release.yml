@@ -52,3 +52,29 @@ jobs:
 
       - name: Trigger Deployment
         run: curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_OppuEhwfzRLkFhlBfT7lTgo4j8eg/TPoo064nXF
+
+      - name: Create Sentry release for production
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+        with:
+          environment: production
+          version: ${{ needs.semver.outputs.version }}
+      - name: Update version env
+        run: echo ${{ needs.semver.outputs.version }} | vercel env add NEXT_PUBLIC_SENTRY_RELEASE production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Create Sentry release for preview
+        if: ${{ github.ref != 'refs/heads/main' }}
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+        with:
+          environment: preview
+          version: ${{ needs.semver.outputs.version }}
+      - name: Trigger Deployment
+        run: curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_OppuEhwfzRLkFhlBfT7lTgo4j8eg/TPoo064nXF
