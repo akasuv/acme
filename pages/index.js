@@ -1,6 +1,10 @@
+import React from "react";
+
 export default function Home() {
+  const [value, setValue] = React.useState();
+
   const handleClick = () => {
-    throw new Error("Sentry Error Detected");
+    setValue(true);
   };
-  return <h1 onClick={handleClick}>TEST</h1>;
+  return !value ? <h1 onClick={handleClick}>TEST</h1> : JSON.parse();
 }
