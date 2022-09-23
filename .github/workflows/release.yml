@@ -22,7 +22,7 @@ jobs:
           node-version: "lts/*"
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn add semantic-release @semantic-release/exec
 
       - name: Create Semantic Release
         env:
@@ -32,7 +32,7 @@ jobs:
   deploy:
     needs: semver
     runs-on: ubuntu-latest
-    if: needs.semver.outputs.version != '' && ${{ github.ref }} == 'refs/heads/main'
+    if: needs.semver.outputs.version != '' && github.ref == 'refs/heads/main'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
