@@ -29,10 +29,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
         run: npx semantic-release
 
-  sentry:
+  deploy:
     needs: semver
     runs-on: ubuntu-latest
-    if: needs.semver.outputs.version != ''
+    if: needs.semver.outputs.version != '' && ${{ github.ref == 'refs/heads/main' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -56,22 +56,19 @@ jobs:
       - name: Remove old version env
         run: vercel env rm NEXT_PUBLIC_SENTRY_RELEASE production --token=${{ secrets.VERCEL_TOKEN }} --yes
 
-      - name: Update version env
+      - name: Add new release env
         run: echo ${{ needs.semver.outputs.version }} | vercel env add NEXT_PUBLIC_SENTRY_RELEASE production --token=${{ secrets.VERCEL_TOKEN }}
 
-      - name: Pull Vercel Environment Information
+      - name: Re-Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Build Project Artifacts
-        if: ${{ github.ref == 'refs/heads/main' }}
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy Project Artifacts to Vercel
-        if: ${{ github.ref == 'refs/heads/main' }}
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Create Sentry release for production
-        if: ${{ github.ref == 'refs/heads/main' }}
         uses: getsentry/action-release@v1
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
@@ -79,17 +76,5 @@ jobs:
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
         with:
           environment: production
-          version: ${{ needs.semver.outputs.version }}
-          sourcemaps: "./.next"
-
-      - name: Create Sentry release for preview
-        if: ${{ github.ref != 'refs/heads/main' }}
-        uses: getsentry/action-release@v1
-        env:
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
-        with:
-          environment: preview
           version: ${{ needs.semver.outputs.version }}
           sourcemaps: "./.next"
