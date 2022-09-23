@@ -22,7 +22,7 @@ jobs:
           node-version: "lts/*"
 
       - name: Install dependencies
-        run: yarn add semantic-release @semantic-release/exec
+        run: yarn add -D semantic-release @semantic-release/exec
 
       - name: Create Semantic Release
         env:
