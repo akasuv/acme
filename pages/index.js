@@ -6,5 +6,5 @@ export default function Home() {
   const handleClick = () => {
     setValue(true);
   };
-  return !value ? <h1 onClick={handleClick}>TEST</h1> : JSON.parse();
+  return !value ? <h1 onClick={handleClick}>ABC</h1> : JSON.parse();
 }
