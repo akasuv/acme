@@ -13,6 +13,7 @@ const moduleExports = {
     disableServerWebpackPlugin: true,
     disableClientWebpackPlugin: true,
   },
+  productionBrowserSourceMaps: true,
 };
 
 const sentryWebpackPluginOptions = {
