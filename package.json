@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest",
     "dev": "next dev",
-    "build": "vercel env pull && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "semantic-release": "semantic-release"
