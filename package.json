@@ -24,7 +24,8 @@
     "@semantic-release/exec": "^6.0.3",
     "eslint": "8.15.0",
     "eslint-config-next": "12.1.6",
-    "semantic-release": "^19.0.5"
+    "semantic-release": "^19.0.5",
+    "vercel": "^28.4.2"
   },
   "repository": {
     "type": "git",
