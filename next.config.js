@@ -22,6 +22,7 @@ const sentryWebpackPluginOptions = {
   release: process.env.NEXT_PUBLIC_SENTRY_RELEASE,
   silent: true, // Suppresses all logs
   setCommits: {
+    repo: "acme",
     commit: process.env.VERCEL_GIT_COMMIT_SHA,
   },
   // For all available options, see:
