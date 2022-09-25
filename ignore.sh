@@ -1,13 +1,13 @@
 #!/bin/bash
 echo "VERCEL_ENV: $VERCEL_ENV"
 
-if [[ "$VERCEL_ENVx" == "" ]] ; then
-  # Proceed with the build
-  echo "✅ - Build can proceed $VEVERCEL_ENVx"
-  exit 1;
+if [[ "$NEXT_PUBLIC_SENTRY_RELEASE" == "" ]] ; then
+  # Don't build
+  echo "No new release, deployment aborted."
+  exit 0;
 
 else
-  # Don't build
-  echo "🛑 - Build cancelled"
-  exit 0;
+  # Proceed with the build
+  echo "New release: $NEXT_PUBLIC_SENTRY_RELEASE"
+  exit 1;
 fi
