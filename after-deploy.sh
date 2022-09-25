@@ -1,1 +1,1 @@
-yarn add -g vercel
+yarn global add vercel
