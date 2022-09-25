@@ -25,6 +25,7 @@ const sentryWebpackPluginOptions = {
   // https://github.com/getsentry/sentry-webpack-plugin#options.
   setCommits: {
     auto: true,
+    ignoreMissing: true,
   },
 };
 
