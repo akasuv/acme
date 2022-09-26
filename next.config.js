@@ -27,7 +27,7 @@ const sentryWebpackPluginOptions = {
   project: process.env.SENTRY_PROJECT,
   setCommits: {
     repo: "akasuv/acme",
-    auto: true,
+    commit: process.env.VERCEL_GIT_COMMIT_MESSAGE,
   },
 };
 
