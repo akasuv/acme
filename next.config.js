@@ -26,6 +26,7 @@ const sentryWebpackPluginOptions = {
   org: process.env.SENTRY_ORG,
   project: process.env.SENTRY_PROJECT,
   setCommits: {
+    repo: "github.com/akasuv/acme",
     auto: true,
     ignoreEmpty: true,
   },
