@@ -22,11 +22,11 @@ const sentryWebpackPluginOptions = {
   release: process.env.NEXT_PUBLIC_SENTRY_RELEASE,
   silent: true, // Suppresses all logs
   setCommits: {
-    repo: "akasuv/acme",
-    commit: process.env.VERCEL_GIT_COMMIT_SHA,
+    auto: true,
+    ignoreMissing: true,
   },
   // For all available options, see:
-  // https://github.com/getsentry/sentry-webpack-plugin#options.
+  // https://github.com/getsentry/sentry-webpack-plugin#options.package
 };
 
 // Make sure adding Sentry options is the last code to run before exporting, to
