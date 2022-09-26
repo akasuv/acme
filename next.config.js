@@ -23,7 +23,8 @@ const sentryWebpackPluginOptions = {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options.package
   release: process.env.NEXT_PUBLIC_SENTRY_RELEASE,
-  logLevel: "info",
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
   setCommits: {
     auto: true,
     ignoreEmpty: true,
