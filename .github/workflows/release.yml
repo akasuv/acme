@@ -56,5 +56,8 @@ jobs:
       - name: Add new release env
         run: echo ${{ needs.semver.outputs.version }} | vercel env add NEXT_PUBLIC_SENTRY_RELEASE production --token=${{ secrets.VERCEL_TOKEN }}
 
+      - name: Add new release env
+        run: echo ${{ needs.semver.outputs.version }} | vercel env add SENTRY_RELEASE production --token=${{ secrets.VERCEL_TOKEN }}
+
       - name: Trigger Deploy
         run: curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_OppuEhwfzRLkFhlBfT7lTgo4j8eg/TPoo064nXF
